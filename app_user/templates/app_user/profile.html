@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ title }} {% endblock title %}
+
+{% block content %}
+<center>
+  <div class="profile">
+    <h3 class="mb-3 text-danger">MY PROFILE</h3>
+    <div class="card text-start">
+      <div class="card-body row">
+        <div class="col-md-6">
+          <table>
+            <tr>
+              <th width="38%">First Name</th>  <td width="5%">:</td>
+              <td width="57%">{{ profile.user.first_name }}</td>
+            </tr>
+            <tr>
+              <th>Last Name</th>  <td>:</td>
+              <td>{{ profile.user.last_name }}</td>
+            </tr>
+            <tr>
+              <th>Username</th>  <td>:</td>
+              <td>{{ profile.user.username }}</td>
+            </tr>
+            <tr>
+              <th>Email</th>  <td>:</td>
+              <td>{{ profile.user.email }}</td>
+            </tr>
+            <tr>
+              <th>Mobile</th>  <td>:</td>
+              <td>{{ profile.mobile }}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-6">
+          <table>
+            <tr class="align-top">
+              <th width="23%">Address</th>  <td width="4%">:</td>
+              <td width="73%">{{ profile.address }}</td>
+            </tr>
+            <tr>
+              <th>City</th>  <td>:</td>
+              <td>{{ profile.city }}</td>
+            </tr>
+            <tr>
+              <th>Zip Code</th>  <td>:</td>
+              <td>{{ profile.zip }}</td>
+            </tr>
+            <tr>
+              <th>Country</th>  <td>:</td>
+              <td>{{ profile.country }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <a href="{% url 'profile_update' %}" class="btn btn-warning btn-sm w-50 mt-4 fs-6">Edit Profile</a>
+  </div>
+</center>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} {{ title }} {% endblock title %}
+
+{% block content %}
+<center>
+  <div class="form-card">
+    <h1><span class="logo fs-3r">Eventz</span></h1>
+    <h5 class="mb-4 text-danger">REGISTER</h5>
+    <form method="POST" class="text-start">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <div class="text-center">
+          <button type="submit" class="btn btn-brown btn-sm w-50 mt-1">Sign Up</button>
+        </div>
+    </form>
+  </div>
+  <br>
+  <div class="form-card auth-bottom">
+    <p>Already have an Account? <a href="{% url 'signin' %}" class="btn-text">Sign in</a></p>
+  </div>
+</center>
+{% endblock content %}

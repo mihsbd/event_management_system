@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ title }} {% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-center mb-5">
+  <!-- Category Filter Buttons -->
+  <a href="{% url 'home' %}" class="btn btn-brown btn-sm mx-1 w-25
+      {% if not selected_cat %}selected{% endif %}">All</a>
+  {% for category in categories %}
+    <a href="{% url 'home' %}?category={{ category.name }}" class="btn btn-brown btn-sm mx-1 w-25
+        {% if selected_cat == category.name %}selected{% endif %}">{{ category.name }}</a>
+  {% endfor %}
+</div>
+
+<div class="row">
+  {% for event in events %}
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title text-center">{{ event.name }}</h5>
+          <p class="card-text">
+            <strong>Date :</strong> {{ event.date }}<br>
+            <strong>Location :</strong> {{ event.location }}<br>
+            <strong>Category :</strong> {{ event.category.name }}<br>
+          </p>
+          <div class="text-center mt-auto">
+            <a href="{% url 'event_detail' event.id %}"
+              class="btn btn-outline-info btn-sm px-4 mx-1">View</a>
+            {% if request.user.is_authenticated and event in request.user.booked_events.all %}
+              <span class="badge bg-success fw-medium mx-1 p-2">Booked</span>
+            {% elif event.is_fully_booked %}
+              <span class="badge bg-danger fw-medium mx-1 p-2">Fully Booked</span>
+            {% else %}
+              <a href="{% url 'book_event' event.id %}"
+                class="btn btn-outline-success btn-sm px-4 mx-1">Book</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock content %}

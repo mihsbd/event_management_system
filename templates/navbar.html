@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg bg-body-secondary">
+  <div class="container">
+    <a class="navbar-brand logo fs-2 pt-0" href={% url 'home' %}>Eventz</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarContent" aria-controls="navbarContent"
+      aria-expanded="false" aria-label="Toggle Navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto fs-5">
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == '/' %}active{% endif %}"
+            aria-current="page" href={% url 'home' %}>Home</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == '/book/list' %}active{% endif %}"
+            href={% url 'booking_list' %}>My Bookings</a>
+        </li>
+        {% endif %}
+      </ul>
+
+      <form class="d-flex" method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" name="query" value="{{ query }}"
+          placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-danger" type="submit">Search</button>
+      </form>
+      
+      <ul class="navbar-nav ms-auto fs-5">
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == '/event/list' %}active{% endif %}"
+            href={% url 'event_list' %}>My Events</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle
+            {% if request.path == '/user/profile/' or request.path ==  '/event/category' %}active{% endif %}"
+            href="#" id="navbarDropdown"
+            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ user.first_name }} {{ user.last_name }}</a>
+          <ul class="dropdown-menu fs-5" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href={% url 'profile' %}>Profile</a></li>
+            {% if request.user.is_superuser %}
+            <li><a class="dropdown-item" href={% url 'category' %}>Category</a></li>
+            {% endif %}
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href={% url 'signout' %}>Logout</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href={% url 'signup' %}>Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={% url 'signin' %}>Login</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

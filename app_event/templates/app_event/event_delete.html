@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ title }} {% endblock title %}
+
+{% block content %}
+<center>
+  <div class="form-card">
+    <h3 class="my-3 text-danger">{{ title | upper }}</h3>
+    <p>Are you sure you want to delete the Event: <br>"{{ event.name }}"?</p>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="mt-4">
+        <button type="submit" class="btn btn-danger btn-sm fs-6 px-5 mx-2">Delete</button>
+        <a href="{% url 'event_detail' event.id %}"
+          class="btn btn-secondary btn-sm fs-6 px-5 mx-2">Cancel</a>
+      </div>
+    </form>
+  </div>
+</center>
+{% endblock content %}

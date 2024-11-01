@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Pridi:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tac+One&display=swap");
+
+body, h1, h2, h3, h4, h5, h6, p, span, a, input, textarea, label, button, select {
+  font-family: "Pridi", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* BASE */
+.messages { width: 47%; }
+.hide { display: none; }
+
+/* NAVBAR */
+.logo { font-family: "Tac One", sans-serif; color: tomato; }
+.logo:hover { color: brown; }
+.nav-link:hover, .dropdown-item:hover { color: tomato; }
+.active { color: tomato !important; }
+
+/* ACCOUNT-AUTH */
+.form-card, .profile, .event, .category {
+  width: 45%;
+  padding: 1rem 2rem 2rem;
+  border: 1px solid #CCC;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.fs-3r { font-size: 3rem; }
+.auth-bottom { padding: 1.5rem 0 0.5rem; }
+
+.btn-brown {
+  background: brown;
+  color: #EEE;
+  font-size: 1rem;
+  transition: background-color 0.3s ease-in-out;
+}
+.btn-brown:hover, .selected { background: tomato; }
+.btn-text { text-decoration: none; color: brown; }
+.btn-text:hover { color: tomato; }
+
+/* PROFILE */
+.profile, .event, .category { width: 70%; }
+
+/* ALERT */
+.alert-error {
+  background-color: #F8D7DA;
+  border-color: #F5C6CB;
+  color: #721C24;
+}
+.alert-block ul {
+  padding: 0;
+  text-align: center;
+  list-style: none;
+}
+
+/* CATEGORY */
+.cross {
+  text-decoration: none;
+  color: brown;
+}
